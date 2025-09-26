@@ -1,0 +1,132 @@
+{
+  "componentName": "HomeworkNew",
+  "purpose": "Create and manage homework assignments for specific classes, streams, and sections with attachments, dates, and notifications within the school ERP system.",
+  "variants": ["tableView", "createRowForm", "filterBar"],
+  "responsiveDesign": {
+    "breakpoints": {
+      "mobile": "up to 767px",
+      "tablet": "768px - 1023px",
+      "desktop": "1024px and above",
+      "xlDesktop": "1440px and above"
+    },
+    "layouts": {
+      "mobile": {
+        "columns": 1,
+        "filters": "stacked, collapsible",
+        "table": "scrollable horizontally",
+        "buttons": "touch-optimized"
+      },
+      "tablet": {
+        "columns": 2,
+        "filters": "responsive",
+        "table": "adjusted column widths",
+        "modals": "adapt to screen size"
+      },
+      "desktop": {
+        "columns": "multi-column",
+        "sidebar": "fixed",
+        "table": "full-width with all columns",
+        "actionButtons": "individual Save per row"
+      }
+    }
+  },
+  "accessibility": {
+    "currentImplementation": [
+      "keyboard navigation support",
+      "screen reader compatible table structure",
+      "color contrast ratios meeting WCAG standards",
+      "focus indicators on buttons and form controls"
+    ],
+    "recommendedEnhancements": [
+      "error message display for validations",
+      "ARIA labels for table and filters",
+      "skip navigation links for keyboard users",
+      "high contrast and reduced motion support"
+    ],
+    "wcagCompliance": {
+      "target": "WCAG 2.1 AA",
+      "testingAuditPlan": [
+        "automated axe-core tests",
+        "manual keyboard navigation",
+        "screen reader testing (NVDA/JAWS)",
+        "color contrast validation"
+      ]
+    }
+  },
+  "functionality": {
+    "filters": [
+      {"name": "Select Class", "type": "dropdown", "mandatory": true},
+      {"name": "Select Stream", "type": "dropdown", "mandatory": true},
+      {"name": "Select Section", "type": "dropdown", "mandatory": true},
+      {"name": "Choose Homework Date", "type": "datePicker", "mandatory": true}
+    ],
+    "tableColumns": [
+      {"name": "Subject", "type": "text", "readonly": true, "mandatory": true},
+      {"name": "Title", "type": "text", "mandatory": true, "validation": {"maxLength": 200, "validateOnBlur": true}},
+      {"name": "Message", "type": "textarea", "mandatory": true, "validation": {"maxLength": 2000, "validateOnBlur": true}},
+      {"name": "URL", "type": "text", "mandatory": false, "validation": {"format": "http/https", "validateOnBlur": true}},
+      {"name": "URL Display Name", "type": "text", "mandatory": false},
+      {
+        "name": "File 1",
+        "type": "file",
+        "mandatory": false,
+        "validation": {"maxSizeMB": 10, "allowedFormats": [".pdf", ".doc", ".jpg", ".png"], "duplicateFileCheck": true}
+      },
+      {
+        "name": "File 2",
+        "type": "file",
+        "mandatory": false,
+        "validation": {"maxSizeMB": 10, "allowedFormats": [".pdf", ".doc", ".jpg", ".png"], "duplicateFileCheck": true}
+      },
+      {"name": "Send Notification", "type": "checkbox", "mandatory": false}
+    ],
+    "maxCTAsPerRow": 1
+  },
+  "validationRules": {
+    "requiredFields": ["Select Class","Select Stream","Select Section","Choose Homework Date","Title","Message"],
+    "date": {"noPastDates": true, "format": "DD/MM/YYYY"},
+    "title": {"maxLength": 200, "validateOnBlur": true},
+    "message": {"maxLength": 2000, "validateOnBlur": true},
+    "url": {"format": "http/https", "validateOnBlur": true},
+    "fileUpload": {"maxSizeMB": 10, "allowedFormats": [".pdf",".doc",".jpg",".png"], "duplicateFileCheck": true}
+  },
+  "layout": {
+    "header": ["Breadcrumbs (Dashboard > Homework)", "New Homework button", "Filter button", "Theme Toggle"],
+    "filterBar": ["Class dropdown", "Stream dropdown", "Section dropdown", "Date picker"],
+    "mainContent": ["Table with subjects", "Individual Save buttons per row", "Preview Button"]
+  },
+  "potentialIssues": [
+    "No bulk save functionality",
+    "Missing cancel/reset buttons",
+    "No preview before save",
+    "Unclear file upload status",
+    "No error message display",
+    "No character count indicators",
+    "URL validation feedback missing",
+    "Stream-Section dependency may fail",
+    "Duplicate file upload conflicts",
+    "Notification delivery feedback missing",
+    "Theme toggle verification missing"
+  ],
+  "recommendedTestCases": {
+    "criticalPath": [
+      "Create homework with all mandatory fields",
+      "Upload valid files in File 1 and File 2",
+      "Set homework date and save",
+      "Send notification and verify delivery",
+      "Switch themes and verify UI updates"
+    ],
+    "negativeTesting": [
+      "Submit empty required fields",
+      "Invalid URL format",
+      "Oversized file upload",
+      "Special characters in title/message"
+    ],
+    "integrationTesting": [
+      "Cross-browser compatibility",
+      "Mobile/tablet/desktop responsiveness",
+      "Database record creation",
+      "User permission validation"
+    ]
+  }
+}

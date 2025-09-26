@@ -1,0 +1,18 @@
+{
+  "name": "web-automation-testing",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@playwright/test": "^1.55.1",
+    "@types/node": "^24.5.0",
+    "start-server-and-test": "^2.1.0",
+    "wait-on": "^8.0.5"
+  }
+}
