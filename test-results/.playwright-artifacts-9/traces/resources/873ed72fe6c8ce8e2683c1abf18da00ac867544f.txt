@@ -1,2 +1,0 @@
-en=scroll&epn.percent_scrolled=90&_et=8
-en=page_view&_et=901&dr=https%3A%2F%2Fod-erp-qa.web.app%2Flogin&seg=1

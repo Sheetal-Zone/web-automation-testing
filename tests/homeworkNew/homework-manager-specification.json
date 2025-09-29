@@ -1,0 +1,329 @@
+{
+  "homeworkManager": {
+    "overview": {
+      "purpose": "A comprehensive homework management system for educational institutions",
+      "description": "The HomeworkManager component provides a complete solution for managing homework assignments with advanced filtering, file uploads, notifications, and responsive design.",
+      "variants": [
+        "List View - Grid layout for homework items",
+        "Filter Modal - Advanced filtering and search capabilities", 
+        "Create/Edit Form - Modal or page-based form for homework creation and editing"
+      ]
+    },
+    "responsiveDesign": {
+      "breakpoints": {
+        "mobile": {
+          "minWidth": "0px",
+          "maxWidth": "767px",
+          "layout": "Single column, stacked elements, touch-friendly buttons"
+        },
+        "tablet": {
+          "minWidth": "768px", 
+          "maxWidth": "1023px",
+          "layout": "Two column grid, optimized for touch interaction"
+        },
+        "midSize": {
+          "minWidth": "1024px",
+          "maxWidth": "1199px", 
+          "layout": "Three column grid with sidebar filters"
+        },
+        "desktop": {
+          "minWidth": "1200px",
+          "maxWidth": "1439px",
+          "layout": "Full grid layout with advanced filtering panel"
+        },
+        "xl": {
+          "minWidth": "1440px",
+          "layout": "Maximum grid density with all features visible"
+        }
+      }
+    },
+    "accessibility": {
+      "keyboardNavigation": {
+        "tabOrder": "Logical tab sequence through all interactive elements",
+        "arrowKeys": "Arrow key navigation for grid items and lists",
+        "enterKey": "Enter key activation for buttons and links",
+        "escapeKey": "Escape key to close modals and dropdowns"
+      },
+      "ariaLabels": {
+        "required": "All interactive elements must have descriptive ARIA labels",
+        "descriptions": "Complex elements need aria-describedby for additional context",
+        "states": "Dynamic states communicated via aria-expanded, aria-selected, aria-checked"
+      },
+      "liveRegions": {
+        "announcements": "Screen reader announcements for dynamic content changes",
+        "statusUpdates": "Real-time status updates for file uploads and form submissions",
+        "errorMessages": "Error announcements with clear, actionable descriptions"
+      },
+      "skipNavigation": {
+        "skipToContent": "Skip to main content link for keyboard users",
+        "skipToFilters": "Skip to filter section for quick access",
+        "landmarkRoles": "Proper landmark roles (main, navigation, complementary)"
+      },
+      "highContrastMode": {
+        "support": "Full support for Windows High Contrast Mode",
+        "colorIndependence": "Information not conveyed by color alone",
+        "contrastRatios": "Minimum 4.5:1 contrast ratio for normal text, 3:1 for large text"
+      },
+      "wcagCompliance": {
+        "level": "WCAG 2.1 AA",
+        "guidelines": [
+          "Perceivable - Information and UI components must be presentable to users",
+          "Operable - UI components and navigation must be operable",
+          "Understandable - Information and UI operation must be understandable", 
+          "Robust - Content must be robust enough for various assistive technologies"
+        ]
+      }
+    },
+    "functionality": {
+      "contentElements": {
+        "serialNumbers": {
+          "type": "string",
+          "format": "Auto-generated or user-defined",
+          "validation": "Unique identifier, required field"
+        },
+        "subject": {
+          "type": "string",
+          "validation": "Required, max 100 characters",
+          "options": "Dropdown with predefined subjects or free text"
+        },
+        "title": {
+          "type": "string", 
+          "validation": "Required, max 200 characters",
+          "placeholder": "Enter homework title"
+        },
+        "message": {
+          "type": "string",
+          "validation": "Optional, max 1000 characters",
+          "format": "Rich text editor with basic formatting"
+        },
+        "urlFields": {
+          "type": "array",
+          "validation": "Valid URL format",
+          "maxItems": 5,
+          "placeholder": "https://example.com"
+        },
+        "fileUploads": {
+          "supportedFormats": ["PDF", "DOC", "DOCX", "JPG", "PNG", "XLS", "XLSX"],
+          "maxFileSize": "10MB per file",
+          "maxFiles": 10,
+          "dragAndDrop": true,
+          "progressIndicator": true
+        },
+        "notificationToggles": {
+          "emailNotification": "boolean",
+          "smsNotification": "boolean", 
+          "pushNotification": "boolean",
+          "reminderSettings": "Custom reminder timing"
+        },
+        "actionButtons": {
+          "maxPerRow": 3,
+          "types": ["Edit", "Delete", "View", "Share", "Archive", "Duplicate"],
+          "confirmationRequired": ["Delete", "Archive"]
+        }
+      }
+    },
+    "dataModel": {
+      "homeworkData": {
+        "id": "string (UUID)",
+        "serialNumber": "string",
+        "subject": "string",
+        "title": "string", 
+        "message": "string",
+        "urls": "array of strings",
+        "files": {
+          "id": "string",
+          "name": "string",
+          "size": "number",
+          "type": "string",
+          "url": "string",
+          "uploadDate": "ISO date string"
+        },
+        "notifications": {
+          "email": "boolean",
+          "sms": "boolean", 
+          "push": "boolean",
+          "reminderDate": "ISO date string"
+        },
+        "metadata": {
+          "createdBy": "string (user ID)",
+          "createdAt": "ISO date string",
+          "updatedBy": "string (user ID)", 
+          "updatedAt": "ISO date string",
+          "version": "number"
+        },
+        "status": {
+          "type": "enum",
+          "values": ["draft", "published", "archived", "deleted"],
+          "default": "draft"
+        },
+        "theme": {
+          "type": "enum",
+          "values": ["light", "dark", "teal"],
+          "default": "light"
+        },
+        "variant": {
+          "type": "enum", 
+          "values": ["list", "grid", "card"],
+          "default": "list"
+        }
+      }
+    },
+    "technicalRequirements": {
+      "reactVersion": "18+",
+      "typescriptVersion": "4.5+",
+      "hooks": {
+        "useHomework": {
+          "purpose": "Manage homework data and operations",
+          "methods": ["getHomework", "createHomework", "updateHomework", "deleteHomework"],
+          "state": ["homeworkList", "loading", "error", "selectedHomework"]
+        },
+        "useFilters": {
+          "purpose": "Handle filtering and search functionality", 
+          "methods": ["applyFilters", "clearFilters", "search"],
+          "state": ["filters", "searchTerm", "sortBy", "sortOrder"]
+        }
+      },
+      "contextAPI": {
+        "homeworkContext": "Global homework state management",
+        "themeContext": "Theme and styling state",
+        "userContext": "User authentication and permissions"
+      },
+      "stateManagement": {
+        "localState": "Component-level state with useState",
+        "globalState": "Context API for shared state",
+        "persistentState": "localStorage for user preferences",
+        "serverState": "React Query for server state management"
+      },
+      "eventHandling": {
+        "onSave": "Save homework data with validation",
+        "onEdit": "Edit existing homework item",
+        "onDelete": "Delete homework with confirmation",
+        "onFileUpload": "Handle file upload with progress",
+        "onFilterChange": "Update filters and trigger search"
+      },
+      "performance": {
+        "virtualScrolling": "For large homework lists",
+        "lazyLoading": "Load homework items on demand",
+        "memoization": "React.memo for component optimization",
+        "bundleSplitting": "Code splitting for better performance"
+      }
+    },
+    "designRequirements": {
+      "spacing": {
+        "xs": "4px",
+        "sm": "8px", 
+        "md": "16px",
+        "lg": "24px",
+        "xl": "32px",
+        "xxl": "48px"
+      },
+      "alignment": {
+        "textAlign": "left for content, center for buttons",
+        "verticalAlign": "middle for inline elements",
+        "gridAlignment": "Consistent grid gaps and alignment"
+      },
+      "animations": {
+        "transitions": "Smooth transitions for state changes",
+        "loadingStates": "Skeleton loaders and spinners",
+        "microInteractions": "Hover effects and button feedback",
+        "duration": "200-300ms for most transitions"
+      },
+      "theming": {
+        "light": {
+          "primary": "#ffffff",
+          "secondary": "#f8f9fa", 
+          "accent": "#007bff",
+          "text": "#212529",
+          "border": "#dee2e6"
+        },
+        "dark": {
+          "primary": "#1a1a1a",
+          "secondary": "#2d2d2d",
+          "accent": "#00d4ff", 
+          "text": "#ffffff",
+          "border": "#404040"
+        },
+        "teal": {
+          "primary": "#ffffff",
+          "secondary": "#f0fdfa",
+          "accent": "#14b8a6",
+          "text": "#0f172a", 
+          "border": "#a7f3d0"
+        }
+      },
+      "typography": {
+        "fontFamily": "Inter, -apple-system, BlinkMacSystemFont, sans-serif",
+        "fontSizes": {
+          "xs": "12px",
+          "sm": "14px",
+          "base": "16px", 
+          "lg": "18px",
+          "xl": "20px",
+          "2xl": "24px",
+          "3xl": "30px"
+        },
+        "fontWeights": {
+          "normal": "400",
+          "medium": "500", 
+          "semibold": "600",
+          "bold": "700"
+        }
+      }
+    },
+    "integration": {
+      "apis": {
+        "getHomework": {
+          "method": "GET",
+          "endpoint": "/api/homework",
+          "parameters": ["page", "limit", "filters", "sort"],
+          "response": "Paginated homework list"
+        },
+        "createHomework": {
+          "method": "POST", 
+          "endpoint": "/api/homework",
+          "body": "HomeworkData object",
+          "response": "Created homework object"
+        },
+        "updateHomework": {
+          "method": "PUT",
+          "endpoint": "/api/homework/:id", 
+          "body": "Updated homework data",
+          "response": "Updated homework object"
+        },
+        "deleteHomework": {
+          "method": "DELETE",
+          "endpoint": "/api/homework/:id",
+          "response": "Success confirmation"
+        },
+        "uploadFiles": {
+          "method": "POST",
+          "endpoint": "/api/upload",
+          "body": "FormData with files",
+          "response": "Uploaded file URLs"
+        }
+      },
+      "dependencies": {
+        "reactHookForm": {
+          "version": "^7.0.0",
+          "purpose": "Form validation and management"
+        },
+        "reactQuery": {
+          "version": "^4.0.0", 
+          "purpose": "Server state management and caching"
+        },
+        "reactTable": {
+          "version": "^8.0.0",
+          "purpose": "Advanced table functionality"
+        },
+        "reactDropzone": {
+          "version": "^14.0.0",
+          "purpose": "File upload with drag and drop"
+        }
+      }
+    },
+    "exampleUsage": {
+      "reactSnippet": "import { HomeworkManager } from './components/HomeworkManager';\n\nfunction App() {\n  return (\n    <HomeworkManager \n      onSave={(data) => console.log('Saved:', data)}\n      onEdit={(id) => console.log('Edit:', id)}\n      onDelete={(id) => console.log('Delete:', id)}\n      theme=\"light\"\n      variant=\"list\"\n    />\n  );\n}",
+      "htmlCustomTag": "<homework-manager \n  data-theme=\"light\" \n  data-variant=\"list\"\n  data-api-endpoint=\"/api/homework\"\n></homework-manager>"
+    }
+  }
+}

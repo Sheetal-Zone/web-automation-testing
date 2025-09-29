@@ -1,0 +1,529 @@
+{
+  "testSuite": "Login Page Test Cases",
+  "version": "1.0",
+  "description": "Comprehensive test cases for Login page covering success scenarios, failure scenarios, navigation, session persistence, and page load functionality",
+  "testEnvironment": {
+    "qaUrl": "https://od-erp-qa.web.app/entity/dashboard",
+    "credentials": {
+      "validId": "1010101111",
+      "validPassword": "1010101111"
+    },
+    "targetPages": [
+      "https://od-erp-qa.web.app/schoolDiary/homework",
+      "https://od-erp-qa.web.app/schoolDiary/homeworkNew"
+    ]
+  },
+  "testCases": [
+    {
+      "testCaseId": "LOGIN-UI-001",
+      "description": "Verify login page loads with all required elements visible",
+      "type": "UI",
+      "steps": [
+        "Navigate to https://od-erp-qa.web.app/entity/dashboard",
+        "Verify login page loads completely",
+        "Check that ID input field is visible and enabled",
+        "Check that Password input field is visible and enabled",
+        "Verify Login button is visible and enabled",
+        "Check that page title and branding are displayed",
+        "Verify no error messages are shown initially"
+      ],
+      "expectedResult": "Login page loads with all required elements (ID field, Password field, Login button) visible and functional"
+    },
+    {
+      "testCaseId": "LOGIN-UI-002",
+      "description": "Verify login page responsive design on different screen sizes",
+      "type": "UI",
+      "steps": [
+        "Navigate to login page",
+        "Test on mobile viewport (320px width)",
+        "Test on tablet viewport (768px width)",
+        "Test on desktop viewport (1200px width)",
+        "Verify all elements are properly sized and positioned",
+        "Check that form is centered and readable",
+        "Verify buttons are touch-friendly on mobile"
+      ],
+      "expectedResult": "Login page displays correctly across all screen sizes with proper element sizing and positioning"
+    },
+    {
+      "testCaseId": "LOGIN-UI-003",
+      "description": "Verify form field labels and placeholders are displayed",
+      "type": "UI",
+      "steps": [
+        "Navigate to login page",
+        "Verify ID field has appropriate label or placeholder",
+        "Verify Password field has appropriate label or placeholder",
+        "Check that field labels are clear and descriptive",
+        "Verify required field indicators if present",
+        "Check that field types are correct (text for ID, password for Password)"
+      ],
+      "expectedResult": "Form fields have clear labels/placeholders and correct input types"
+    },
+    {
+      "testCaseId": "LOGIN-UI-004",
+      "description": "Verify login button styling and states",
+      "type": "UI",
+      "steps": [
+        "Navigate to login page",
+        "Verify Login button is styled appropriately",
+        "Check button hover state",
+        "Check button focus state",
+        "Verify button disabled state (if applicable)",
+        "Check button loading state (if applicable)",
+        "Verify button text is clear and actionable"
+      ],
+      "expectedResult": "Login button has proper styling with appropriate hover, focus, and state indicators"
+    },
+    {
+      "testCaseId": "LOGIN-FUNC-001",
+      "description": "Verify successful login with valid credentials",
+      "type": "Functional",
+      "steps": [
+        "Navigate to https://od-erp-qa.web.app/entity/dashboard",
+        "Enter ID: 1010101111",
+        "Enter Password: 1010101111",
+        "Click Login button",
+        "Wait for authentication to complete",
+        "Verify successful redirect to dashboard or next page",
+        "Verify user session is established"
+      ],
+      "expectedResult": "Login is successful with valid credentials and user is redirected to the appropriate page"
+    },
+    {
+      "testCaseId": "LOGIN-FUNC-002",
+      "description": "Verify login failure with invalid ID",
+      "type": "Functional",
+      "steps": [
+        "Navigate to login page",
+        "Enter invalid ID: 9999999999",
+        "Enter valid Password: 1010101111",
+        "Click Login button",
+        "Verify error message is displayed",
+        "Check that user remains on login page",
+        "Verify form fields are cleared or retain values as per design"
+      ],
+      "expectedResult": "Login fails with appropriate error message for invalid ID and user remains on login page"
+    },
+    {
+      "testCaseId": "LOGIN-FUNC-003",
+      "description": "Verify login failure with invalid password",
+      "type": "Functional",
+      "steps": [
+        "Navigate to login page",
+        "Enter valid ID: 1010101111",
+        "Enter invalid Password: wrongpassword",
+        "Click Login button",
+        "Verify error message is displayed",
+        "Check that user remains on login page",
+        "Verify form fields are cleared or retain values as per design"
+      ],
+      "expectedResult": "Login fails with appropriate error message for invalid password and user remains on login page"
+    },
+    {
+      "testCaseId": "LOGIN-FUNC-004",
+      "description": "Verify login failure with empty fields",
+      "type": "Functional",
+      "steps": [
+        "Navigate to login page",
+        "Leave ID field empty",
+        "Leave Password field empty",
+        "Click Login button",
+        "Verify validation error messages are displayed",
+        "Check that both fields show required field errors",
+        "Verify user remains on login page"
+      ],
+      "expectedResult": "Validation errors are shown for empty required fields and login is prevented"
+    },
+    {
+      "testCaseId": "LOGIN-FUNC-005",
+      "description": "Verify login failure with empty ID field only",
+      "type": "Functional",
+      "steps": [
+        "Navigate to login page",
+        "Leave ID field empty",
+        "Enter valid Password: 1010101111",
+        "Click Login button",
+        "Verify ID field validation error is displayed",
+        "Check that Password field does not show error",
+        "Verify user remains on login page"
+      ],
+      "expectedResult": "ID field validation error is shown while Password field remains valid"
+    },
+    {
+      "testCaseId": "LOGIN-FUNC-006",
+      "description": "Verify login failure with empty password field only",
+      "type": "Functional",
+      "steps": [
+        "Navigate to login page",
+        "Enter valid ID: 1010101111",
+        "Leave Password field empty",
+        "Click Login button",
+        "Verify Password field validation error is displayed",
+        "Check that ID field does not show error",
+        "Verify user remains on login page"
+      ],
+      "expectedResult": "Password field validation error is shown while ID field remains valid"
+    },
+    {
+      "testCaseId": "LOGIN-FUNC-007",
+      "description": "Verify navigation to homework page after successful login",
+      "type": "Functional",
+      "steps": [
+        "Navigate to login page",
+        "Enter valid credentials (ID: 1010101111, Password: 1010101111)",
+        "Click Login button",
+        "Wait for successful login",
+        "Navigate to https://od-erp-qa.web.app/schoolDiary/homework",
+        "Verify homework page loads successfully",
+        "Verify user is authenticated and can access the page"
+      ],
+      "expectedResult": "User can successfully navigate to homework page after login and page loads with proper authentication"
+    },
+    {
+      "testCaseId": "LOGIN-FUNC-008",
+      "description": "Verify navigation to homeworkNew page after successful login",
+      "type": "Functional",
+      "steps": [
+        "Navigate to login page",
+        "Enter valid credentials (ID: 1010101111, Password: 1010101111)",
+        "Click Login button",
+        "Wait for successful login",
+        "Navigate to https://od-erp-qa.web.app/schoolDiary/homeworkNew",
+        "Verify homeworkNew page loads successfully",
+        "Verify user is authenticated and can access the page"
+      ],
+      "expectedResult": "User can successfully navigate to homeworkNew page after login and page loads with proper authentication"
+    },
+    {
+      "testCaseId": "LOGIN-FUNC-009",
+      "description": "Verify session persistence across page navigation",
+      "type": "Functional",
+      "steps": [
+        "Navigate to login page",
+        "Enter valid credentials and login successfully",
+        "Navigate to homework page",
+        "Navigate to homeworkNew page",
+        "Navigate back to dashboard",
+        "Refresh the browser page",
+        "Verify user remains logged in",
+        "Verify no re-authentication is required"
+      ],
+      "expectedResult": "User session persists across page navigation and browser refresh without requiring re-login"
+    },
+    {
+      "testCaseId": "LOGIN-FUNC-010",
+      "description": "Verify session timeout handling",
+      "type": "Functional",
+      "steps": [
+        "Navigate to login page",
+        "Enter valid credentials and login successfully",
+        "Wait for session timeout (if applicable) or simulate timeout",
+        "Try to access protected pages",
+        "Verify user is redirected to login page",
+        "Verify session timeout message is displayed",
+        "Verify user must re-authenticate"
+      ],
+      "expectedResult": "Session timeout is handled properly with appropriate redirect to login page and re-authentication requirement"
+    },
+    {
+      "testCaseId": "LOGIN-FUNC-011",
+      "description": "Verify logout functionality",
+      "type": "Functional",
+      "steps": [
+        "Navigate to login page",
+        "Enter valid credentials and login successfully",
+        "Navigate to any authenticated page",
+        "Click logout button or link",
+        "Verify user is logged out",
+        "Verify redirect to login page",
+        "Try to access protected pages",
+        "Verify access is denied and redirect to login"
+      ],
+      "expectedResult": "Logout functionality works correctly and user is properly logged out with session termination"
+    },
+    {
+      "testCaseId": "LOGIN-FUNC-012",
+      "description": "Verify form submission with Enter key",
+      "type": "Functional",
+      "steps": [
+        "Navigate to login page",
+        "Enter valid credentials (ID: 1010101111, Password: 1010101111)",
+        "Press Enter key while in Password field",
+        "Verify login form is submitted",
+        "Verify successful login and redirect",
+        "Test with invalid credentials and Enter key",
+        "Verify error handling works with Enter key submission"
+      ],
+      "expectedResult": "Form submission works correctly with Enter key for both valid and invalid credentials"
+    },
+    {
+      "testCaseId": "LOGIN-FUNC-013",
+      "description": "Verify multiple failed login attempts handling",
+      "type": "Functional",
+      "steps": [
+        "Navigate to login page",
+        "Enter invalid credentials multiple times (3-5 attempts)",
+        "Verify error messages are displayed for each attempt",
+        "Check if account lockout occurs after multiple failures",
+        "Verify appropriate security measures are in place",
+        "Test with valid credentials after multiple failures",
+        "Verify system behavior with repeated failed attempts"
+      ],
+      "expectedResult": "Multiple failed login attempts are handled appropriately with proper error messages and security measures"
+    },
+    {
+      "testCaseId": "LOGIN-FUNC-014",
+      "description": "Verify browser back button behavior after login",
+      "type": "Functional",
+      "steps": [
+        "Navigate to login page",
+        "Enter valid credentials and login successfully",
+        "Navigate to homework page",
+        "Use browser back button",
+        "Verify user cannot access login page while authenticated",
+        "Verify redirect to appropriate authenticated page",
+        "Test browser forward button behavior"
+      ],
+      "expectedResult": "Browser navigation works correctly after login with proper redirect handling for authenticated users"
+    },
+    {
+      "testCaseId": "LOGIN-FUNC-015",
+      "description": "Verify direct access to protected pages without login",
+      "type": "Functional",
+      "steps": [
+        "Navigate directly to https://od-erp-qa.web.app/schoolDiary/homework",
+        "Verify redirect to login page",
+        "Navigate directly to https://od-erp-qa.web.app/schoolDiary/homeworkNew",
+        "Verify redirect to login page",
+        "Verify no unauthorized access is allowed",
+        "Check that proper authentication flow is enforced"
+      ],
+      "expectedResult": "Direct access to protected pages redirects to login page and prevents unauthorized access"
+    },
+    {
+      "testCaseId": "LOGIN-PERF-001",
+      "description": "Verify login page load performance",
+      "type": "Performance",
+      "steps": [
+        "Clear browser cache and cookies",
+        "Navigate to login page",
+        "Measure page load time",
+        "Verify page loads within acceptable time (under 3 seconds)",
+        "Check that all resources load completely",
+        "Verify no broken images or missing assets",
+        "Test on different network conditions"
+      ],
+      "expectedResult": "Login page loads within acceptable time with all resources loading completely"
+    },
+    {
+      "testCaseId": "LOGIN-PERF-002",
+      "description": "Verify authentication response time",
+      "type": "Performance",
+      "steps": [
+        "Navigate to login page",
+        "Enter valid credentials",
+        "Click Login button",
+        "Measure authentication response time",
+        "Verify authentication completes within acceptable time (under 5 seconds)",
+        "Test with slow network connection",
+        "Verify loading indicators are shown during authentication"
+      ],
+      "expectedResult": "Authentication completes within acceptable time with proper loading indicators"
+    },
+    {
+      "testCaseId": "LOGIN-ACCESS-001",
+      "description": "Verify keyboard navigation on login page",
+      "type": "Accessibility",
+      "steps": [
+        "Navigate to login page",
+        "Use Tab key to navigate through all elements",
+        "Verify focus order is logical (ID field, Password field, Login button)",
+        "Use Shift+Tab to navigate backwards",
+        "Verify all interactive elements are accessible via keyboard",
+        "Check that focus indicators are visible",
+        "Test Enter key activation on focused elements"
+      ],
+      "expectedResult": "All interactive elements are accessible via keyboard with logical tab order and visible focus indicators"
+    },
+    {
+      "testCaseId": "LOGIN-ACCESS-002",
+      "description": "Verify screen reader compatibility",
+      "type": "Accessibility",
+      "steps": [
+        "Navigate to login page with screen reader",
+        "Verify all form fields have proper labels",
+        "Check that error messages are announced",
+        "Verify button text is descriptive",
+        "Test form validation announcements",
+        "Check that page structure is logical for screen readers",
+        "Verify all content is accessible"
+      ],
+      "expectedResult": "Login page is fully accessible to screen readers with proper labels and announcements"
+    },
+    {
+      "testCaseId": "LOGIN-ACCESS-003",
+      "description": "Verify high contrast mode support",
+      "type": "Accessibility",
+      "steps": [
+        "Enable high contrast mode",
+        "Navigate to login page",
+        "Verify all elements are visible and readable",
+        "Check that form fields are clearly defined",
+        "Verify buttons are clearly visible",
+        "Test login functionality in high contrast mode",
+        "Verify error messages are readable"
+      ],
+      "expectedResult": "Login page is fully functional and accessible in high contrast mode"
+    },
+    {
+      "testCaseId": "LOGIN-ACCESS-004",
+      "description": "Verify form validation accessibility",
+      "type": "Accessibility",
+      "steps": [
+        "Navigate to login page",
+        "Submit form with empty fields",
+        "Verify validation errors are announced by screen reader",
+        "Check that error messages are associated with correct fields",
+        "Test with invalid credentials",
+        "Verify error announcements are clear and actionable",
+        "Check that focus moves to error fields"
+      ],
+      "expectedResult": "Form validation is accessible with proper error announcements and field associations"
+    },
+    {
+      "testCaseId": "LOGIN-SEC-001",
+      "description": "Verify password field security",
+      "type": "Security",
+      "steps": [
+        "Navigate to login page",
+        "Enter password in password field",
+        "Verify password is masked (dots or asterisks)",
+        "Check that password is not visible in page source",
+        "Verify password is not stored in browser autocomplete inappropriately",
+        "Test password field behavior on different browsers",
+        "Verify secure password handling"
+      ],
+      "expectedResult": "Password field properly masks input and handles password securely"
+    },
+    {
+      "testCaseId": "LOGIN-SEC-002",
+      "description": "Verify HTTPS security",
+      "type": "Security",
+      "steps": [
+        "Navigate to login page",
+        "Verify page is served over HTTPS",
+        "Check for SSL certificate validity",
+        "Verify secure connection indicator in browser",
+        "Test form submission over secure connection",
+        "Verify no mixed content warnings",
+        "Check that sensitive data is transmitted securely"
+      ],
+      "expectedResult": "Login page uses HTTPS with valid SSL certificate and secure data transmission"
+    },
+    {
+      "testCaseId": "LOGIN-SEC-003",
+      "description": "Verify session security",
+      "type": "Security",
+      "steps": [
+        "Navigate to login page",
+        "Login with valid credentials",
+        "Check that session cookies are secure",
+        "Verify session tokens are properly generated",
+        "Test session invalidation on logout",
+        "Verify no sensitive data in URL parameters",
+        "Check that session data is properly encrypted"
+      ],
+      "expectedResult": "Session management is secure with proper cookie handling and token generation"
+    },
+    {
+      "testCaseId": "LOGIN-EDGE-001",
+      "description": "Verify handling of special characters in credentials",
+      "type": "Edge Case",
+      "steps": [
+        "Navigate to login page",
+        "Enter ID with special characters: 1010101111!@#",
+        "Enter password with special characters: 1010101111$%^",
+        "Click Login button",
+        "Verify system handles special characters correctly",
+        "Test with Unicode characters",
+        "Check that special characters don't break authentication"
+      ],
+      "expectedResult": "System handles special characters in credentials appropriately without breaking authentication"
+    },
+    {
+      "testCaseId": "LOGIN-EDGE-002",
+      "description": "Verify handling of very long input strings",
+      "type": "Edge Case",
+      "steps": [
+        "Navigate to login page",
+        "Enter extremely long ID string (1000+ characters)",
+        "Enter extremely long password string (1000+ characters)",
+        "Click Login button",
+        "Verify system handles long inputs gracefully",
+        "Check that input length limits are enforced",
+        "Verify no system errors or crashes occur"
+      ],
+      "expectedResult": "System handles extremely long input strings gracefully with appropriate length limits"
+    },
+    {
+      "testCaseId": "LOGIN-EDGE-003",
+      "description": "Verify handling of rapid form submissions",
+      "type": "Edge Case",
+      "steps": [
+        "Navigate to login page",
+        "Enter valid credentials",
+        "Rapidly click Login button multiple times",
+        "Verify only one authentication request is processed",
+        "Check that duplicate submissions are prevented",
+        "Verify system remains stable",
+        "Test with rapid Enter key presses"
+      ],
+      "expectedResult": "System prevents duplicate form submissions and handles rapid user interactions gracefully"
+    },
+    {
+      "testCaseId": "LOGIN-EDGE-004",
+      "description": "Verify handling of browser refresh during login",
+      "type": "Edge Case",
+      "steps": [
+        "Navigate to login page",
+        "Enter credentials",
+        "Click Login button",
+        "Immediately refresh browser during authentication",
+        "Verify system handles interrupted authentication",
+        "Check that no partial session state is created",
+        "Verify user can retry login after refresh"
+      ],
+      "expectedResult": "System handles browser refresh during login gracefully without creating partial session states"
+    },
+    {
+      "testCaseId": "LOGIN-EDGE-005",
+      "description": "Verify handling of network interruption during login",
+      "type": "Edge Case",
+      "steps": [
+        "Navigate to login page",
+        "Enter valid credentials",
+        "Click Login button",
+        "Simulate network interruption during authentication",
+        "Verify appropriate error message is displayed",
+        "Restore network connection",
+        "Verify user can retry login",
+        "Check that no partial authentication state exists"
+      ],
+      "expectedResult": "System handles network interruptions during login with appropriate error messages and recovery options"
+    },
+    {
+      "testCaseId": "LOGIN-EDGE-006",
+      "description": "Verify handling of multiple browser tabs",
+      "type": "Edge Case",
+      "steps": [
+        "Open login page in multiple browser tabs",
+        "Login successfully in one tab",
+        "Check other tabs for authentication state",
+        "Verify session is shared across tabs",
+        "Logout from one tab",
+        "Verify logout affects all tabs",
+        "Test concurrent login attempts from different tabs"
+      ],
+      "expectedResult": "Authentication state is properly synchronized across multiple browser tabs"
+    }
+  ]
+}

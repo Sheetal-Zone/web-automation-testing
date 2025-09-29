@@ -1,0 +1,438 @@
+{
+  "testSuite": "HomeworkManager Test Cases",
+  "version": "1.0",
+  "description": "Comprehensive test cases for HomeworkManager component covering UI, functionality, accessibility, API integration, and edge cases",
+  "testCases": [
+    {
+      "testCaseId": "HM-UI-001",
+      "description": "Verify HomeworkManager page loads with correct layout on mobile devices",
+      "type": "UI",
+      "steps": [
+        "Navigate to HomeworkManager page",
+        "Set viewport to mobile size (320px width)",
+        "Verify single column layout is displayed",
+        "Verify all elements are stacked vertically",
+        "Verify touch-friendly button sizes (minimum 44px)"
+      ],
+      "expectedResult": "Page displays in single column layout with properly sized touch targets"
+    },
+    {
+      "testCaseId": "HM-UI-002", 
+      "description": "Verify responsive design across all breakpoints",
+      "type": "UI",
+      "steps": [
+        "Navigate to HomeworkManager page",
+        "Test mobile breakpoint (0-767px)",
+        "Test tablet breakpoint (768-1023px)",
+        "Test mid-size breakpoint (1024-1199px)",
+        "Test desktop breakpoint (1200-1439px)",
+        "Test XL breakpoint (1440px+)",
+        "Verify layout changes appropriately at each breakpoint"
+      ],
+      "expectedResult": "Layout adapts correctly to each breakpoint with appropriate column counts and element arrangements"
+    },
+    {
+      "testCaseId": "HM-UI-003",
+      "description": "Verify theme switching functionality",
+      "type": "UI", 
+      "steps": [
+        "Navigate to HomeworkManager page",
+        "Switch to light theme",
+        "Verify light theme colors are applied",
+        "Switch to dark theme", 
+        "Verify dark theme colors are applied",
+        "Switch to teal theme",
+        "Verify teal theme colors are applied"
+      ],
+      "expectedResult": "All three themes (light, dark, teal) are applied correctly with proper color schemes"
+    },
+    {
+      "testCaseId": "HM-UI-004",
+      "description": "Verify homework list displays with proper formatting",
+      "type": "UI",
+      "steps": [
+        "Navigate to HomeworkManager page",
+        "Verify homework items are displayed in list format",
+        "Check serial numbers are visible and formatted correctly",
+        "Verify subject, title, and message fields are displayed",
+        "Check that action buttons are visible (max 3 per row)",
+        "Verify file attachments are shown with proper icons"
+      ],
+      "expectedResult": "Homework list displays all required fields with proper formatting and maximum 3 action buttons per row"
+    },
+    {
+      "testCaseId": "HM-UI-005",
+      "description": "Verify filter modal opens and displays correctly",
+      "type": "UI",
+      "steps": [
+        "Navigate to HomeworkManager page",
+        "Click on filter button",
+        "Verify filter modal opens",
+        "Check that all filter options are available",
+        "Verify search input field is present",
+        "Check that apply and clear filter buttons are visible"
+      ],
+      "expectedResult": "Filter modal opens with all filter options, search field, and action buttons visible"
+    },
+    {
+      "testCaseId": "HM-FUNC-001",
+      "description": "Verify create homework functionality",
+      "type": "Functional",
+      "steps": [
+        "Navigate to HomeworkManager page",
+        "Click 'Create Homework' button",
+        "Fill in required fields (subject, title)",
+        "Add optional message",
+        "Add URL links (up to 5)",
+        "Upload files (PDF, DOC, JPG, PNG, Excel)",
+        "Configure notification settings",
+        "Click 'Save' button"
+      ],
+      "expectedResult": "New homework is created successfully with all provided data and appears in the list"
+    },
+    {
+      "testCaseId": "HM-FUNC-002",
+      "description": "Verify edit homework functionality",
+      "type": "Functional",
+      "steps": [
+        "Navigate to HomeworkManager page",
+        "Click 'Edit' button on existing homework item",
+        "Modify subject field",
+        "Update title",
+        "Change message content",
+        "Add/remove URL links",
+        "Upload additional files",
+        "Update notification settings",
+        "Click 'Save' button"
+      ],
+      "expectedResult": "Homework item is updated with new data and changes are reflected in the list"
+    },
+    {
+      "testCaseId": "HM-FUNC-003",
+      "description": "Verify delete homework functionality",
+      "type": "Functional",
+      "steps": [
+        "Navigate to HomeworkManager page",
+        "Click 'Delete' button on homework item",
+        "Verify confirmation dialog appears",
+        "Click 'Confirm' in dialog",
+        "Verify homework item is removed from list"
+      ],
+      "expectedResult": "Confirmation dialog appears and homework item is deleted after confirmation"
+    },
+    {
+      "testCaseId": "HM-FUNC-004",
+      "description": "Verify file upload functionality",
+      "type": "Functional",
+      "steps": [
+        "Navigate to HomeworkManager page",
+        "Click 'Create Homework' or 'Edit' existing homework",
+        "Drag and drop files onto upload area",
+        "Verify supported file types (PDF, DOC, DOCX, JPG, PNG, XLS, XLSX) are accepted",
+        "Verify file size validation (max 10MB per file)",
+        "Verify maximum file count validation (max 10 files)",
+        "Check upload progress indicator",
+        "Verify files are attached to homework"
+      ],
+      "expectedResult": "Files are uploaded successfully with proper validation and progress indication"
+    },
+    {
+      "testCaseId": "HM-FUNC-005",
+      "description": "Verify filtering and search functionality",
+      "type": "Functional",
+      "steps": [
+        "Navigate to HomeworkManager page",
+        "Open filter modal",
+        "Set subject filter",
+        "Set date range filter",
+        "Enter search term",
+        "Click 'Apply Filters'",
+        "Verify filtered results are displayed",
+        "Click 'Clear Filters'",
+        "Verify all homework items are shown"
+      ],
+      "expectedResult": "Filters are applied correctly and results are filtered as expected, clear filters resets to show all items"
+    },
+    {
+      "testCaseId": "HM-FUNC-006",
+      "description": "Verify notification settings functionality",
+      "type": "Functional",
+      "steps": [
+        "Navigate to HomeworkManager page",
+        "Create or edit homework",
+        "Toggle email notification on/off",
+        "Toggle SMS notification on/off",
+        "Toggle push notification on/off",
+        "Set custom reminder date",
+        "Save homework",
+        "Verify notification settings are saved"
+      ],
+      "expectedResult": "All notification settings are saved and can be toggled independently"
+    },
+    {
+      "testCaseId": "HM-ACCESS-001",
+      "description": "Verify keyboard navigation works correctly",
+      "type": "Accessibility",
+      "steps": [
+        "Navigate to HomeworkManager page using keyboard only",
+        "Use Tab key to navigate through all interactive elements",
+        "Use Arrow keys to navigate through homework list items",
+        "Use Enter key to activate buttons and links",
+        "Use Escape key to close modals",
+        "Verify focus indicators are visible"
+      ],
+      "expectedResult": "All interactive elements are accessible via keyboard with visible focus indicators"
+    },
+    {
+      "testCaseId": "HM-ACCESS-002",
+      "description": "Verify ARIA labels and screen reader support",
+      "type": "Accessibility",
+      "steps": [
+        "Navigate to HomeworkManager page with screen reader",
+        "Verify all buttons have descriptive ARIA labels",
+        "Check that form fields have proper labels",
+        "Verify complex elements have aria-describedby",
+        "Check that dynamic states are announced (aria-expanded, aria-selected)",
+        "Verify error messages are announced"
+      ],
+      "expectedResult": "Screen reader can navigate and understand all page elements with proper ARIA labels"
+    },
+    {
+      "testCaseId": "HM-ACCESS-003",
+      "description": "Verify skip navigation links",
+      "type": "Accessibility",
+      "steps": [
+        "Navigate to HomeworkManager page",
+        "Press Tab to focus on skip navigation links",
+        "Use 'Skip to main content' link",
+        "Use 'Skip to filters' link",
+        "Verify focus moves to appropriate sections",
+        "Check that landmark roles are properly defined"
+      ],
+      "expectedResult": "Skip navigation links work correctly and focus moves to appropriate page sections"
+    },
+    {
+      "testCaseId": "HM-ACCESS-004",
+      "description": "Verify high contrast mode support",
+      "type": "Accessibility",
+      "steps": [
+        "Enable Windows High Contrast Mode",
+        "Navigate to HomeworkManager page",
+        "Verify all elements are visible and readable",
+        "Check that information is not conveyed by color alone",
+        "Verify contrast ratios meet WCAG 2.1 AA standards",
+        "Test all interactive elements are accessible"
+      ],
+      "expectedResult": "Page is fully functional and accessible in high contrast mode with proper contrast ratios"
+    },
+    {
+      "testCaseId": "HM-ACCESS-005",
+      "description": "Verify live regions for dynamic content",
+      "type": "Accessibility",
+      "steps": [
+        "Navigate to HomeworkManager page with screen reader",
+        "Perform actions that change content (create, edit, delete homework)",
+        "Verify screen reader announces changes",
+        "Check that loading states are announced",
+        "Verify error messages are announced",
+        "Check that success messages are announced"
+      ],
+      "expectedResult": "Screen reader announces all dynamic content changes including loading, success, and error states"
+    },
+    {
+      "testCaseId": "HM-API-001",
+      "description": "Verify GET homework API integration",
+      "type": "API",
+      "steps": [
+        "Navigate to HomeworkManager page",
+        "Verify homework list loads from API",
+        "Check that loading state is shown during API call",
+        "Verify error handling if API fails",
+        "Test pagination if applicable",
+        "Verify data is displayed correctly"
+      ],
+      "expectedResult": "Homework data is successfully loaded from API with proper loading states and error handling"
+    },
+    {
+      "testCaseId": "HM-API-002",
+      "description": "Verify CREATE homework API integration",
+      "type": "API",
+      "steps": [
+        "Navigate to HomeworkManager page",
+        "Create new homework with all required fields",
+        "Submit form",
+        "Verify API call is made to /api/homework with POST method",
+        "Check that success response is handled",
+        "Verify new homework appears in list",
+        "Test error handling for API failures"
+      ],
+      "expectedResult": "New homework is successfully created via API and appears in the list"
+    },
+    {
+      "testCaseId": "HM-API-003",
+      "description": "Verify UPDATE homework API integration",
+      "type": "API",
+      "steps": [
+        "Navigate to HomeworkManager page",
+        "Edit existing homework item",
+        "Make changes to homework data",
+        "Submit form",
+        "Verify API call is made to /api/homework/:id with PUT method",
+        "Check that success response is handled",
+        "Verify changes are reflected in the list",
+        "Test error handling for API failures"
+      ],
+      "expectedResult": "Homework is successfully updated via API and changes are reflected in the list"
+    },
+    {
+      "testCaseId": "HM-API-004",
+      "description": "Verify DELETE homework API integration",
+      "type": "API",
+      "steps": [
+        "Navigate to HomeworkManager page",
+        "Delete existing homework item",
+        "Confirm deletion",
+        "Verify API call is made to /api/homework/:id with DELETE method",
+        "Check that success response is handled",
+        "Verify homework is removed from list",
+        "Test error handling for API failures"
+      ],
+      "expectedResult": "Homework is successfully deleted via API and removed from the list"
+    },
+    {
+      "testCaseId": "HM-API-005",
+      "description": "Verify file upload API integration",
+      "type": "API",
+      "steps": [
+        "Navigate to HomeworkManager page",
+        "Create or edit homework",
+        "Upload files (PDF, DOC, JPG, PNG, Excel)",
+        "Submit form",
+        "Verify API call is made to /api/upload with POST method",
+        "Check that file URLs are returned",
+        "Verify files are attached to homework",
+        "Test error handling for upload failures"
+      ],
+      "expectedResult": "Files are successfully uploaded via API and attached to homework"
+    },
+    {
+      "testCaseId": "HM-EDGE-001",
+      "description": "Verify handling of large homework lists with virtual scrolling",
+      "type": "Edge Case",
+      "steps": [
+        "Navigate to HomeworkManager page with 1000+ homework items",
+        "Verify virtual scrolling is implemented",
+        "Check that only visible items are rendered",
+        "Scroll through the list",
+        "Verify performance remains acceptable",
+        "Check that all items are accessible"
+      ],
+      "expectedResult": "Large lists are handled efficiently with virtual scrolling and good performance"
+    },
+    {
+      "testCaseId": "HM-EDGE-002",
+      "description": "Verify handling of invalid file uploads",
+      "type": "Edge Case",
+      "steps": [
+        "Navigate to HomeworkManager page",
+        "Try to upload unsupported file types",
+        "Try to upload files larger than 10MB",
+        "Try to upload more than 10 files",
+        "Verify appropriate error messages are shown",
+        "Check that invalid uploads are rejected"
+      ],
+      "expectedResult": "Invalid file uploads are properly rejected with clear error messages"
+    },
+    {
+      "testCaseId": "HM-EDGE-003",
+      "description": "Verify handling of network connectivity issues",
+      "type": "Edge Case",
+      "steps": [
+        "Navigate to HomeworkManager page",
+        "Disconnect network connection",
+        "Try to create/edit/delete homework",
+        "Verify offline handling is implemented",
+        "Reconnect network",
+        "Verify data synchronization works",
+        "Check that pending changes are applied"
+      ],
+      "expectedResult": "Application handles offline scenarios gracefully with proper data synchronization"
+    },
+    {
+      "testCaseId": "HM-EDGE-004",
+      "description": "Verify handling of concurrent user modifications",
+      "type": "Edge Case",
+      "steps": [
+        "Open HomeworkManager page in multiple browser tabs",
+        "Edit same homework item in different tabs",
+        "Save changes in both tabs",
+        "Verify conflict resolution mechanism",
+        "Check that last saved changes are preserved",
+        "Verify appropriate notifications are shown"
+      ],
+      "expectedResult": "Concurrent modifications are handled properly with conflict resolution"
+    },
+    {
+      "testCaseId": "HM-EDGE-005",
+      "description": "Verify handling of special characters in homework data",
+      "type": "Edge Case",
+      "steps": [
+        "Navigate to HomeworkManager page",
+        "Create homework with special characters in title and message",
+        "Include Unicode characters, emojis, and symbols",
+        "Save homework",
+        "Verify data is stored and displayed correctly",
+        "Test search functionality with special characters",
+        "Check that filtering works with special characters"
+      ],
+      "expectedResult": "Special characters are handled correctly in all homework data fields and operations"
+    },
+    {
+      "testCaseId": "HM-EDGE-006",
+      "description": "Verify handling of extremely long text inputs",
+      "type": "Edge Case",
+      "steps": [
+        "Navigate to HomeworkManager page",
+        "Create homework with maximum length title (200 characters)",
+        "Add maximum length message (1000 characters)",
+        "Add maximum number of URLs (5)",
+        "Save homework",
+        "Verify data is stored correctly",
+        "Check that UI handles long text properly",
+        "Test editing of long text fields"
+      ],
+      "expectedResult": "Maximum length inputs are handled correctly with proper UI display and data storage"
+    },
+    {
+      "testCaseId": "HM-EDGE-007",
+      "description": "Verify handling of rapid user interactions",
+      "type": "Edge Case",
+      "steps": [
+        "Navigate to HomeworkManager page",
+        "Rapidly click create/edit/delete buttons",
+        "Rapidly type in form fields",
+        "Rapidly upload multiple files",
+        "Verify no race conditions occur",
+        "Check that all actions are processed correctly",
+        "Verify UI remains responsive"
+      ],
+      "expectedResult": "Rapid user interactions are handled correctly without race conditions or UI freezing"
+    },
+    {
+      "testCaseId": "HM-EDGE-008",
+      "description": "Verify handling of browser back/forward navigation",
+      "type": "Edge Case",
+      "steps": [
+        "Navigate to HomeworkManager page",
+        "Create/edit homework items",
+        "Use browser back button",
+        "Use browser forward button",
+      
+        "Verify state is preserved correctly",
+        "Check that unsaved changes are handled",
+        "Verify navigation history works properly"
+      ],
+      "expectedResult": "Browser navigation works correctly with proper state preservation and unsaved changes handling"
+    }
+  ]
+}
